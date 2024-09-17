@@ -1,0 +1,112 @@
+const express = require("express");
+const router = require("./api");
+const path = require("path");
+
+const app = express();
+app.use(express.json());
+
+app.use(router);
+app.get("/", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/cliff/cliff.html"));
+});
+
+app.get("/claude-3-haiku", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/chatgpt/claude"));
+});
+
+app.get("/lookup", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/stalk/lookup"));
+});
+
+app.get("/gpt4o", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/chatgpt/gpt4o"));
+});
+
+app.get("/llama", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/chatgpt/llama"));
+});
+
+app.get("/mixtral", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/chatgpt/mixtral"));
+});
+
+app.get("/blackbox", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/chatgpt/blackbox"));
+});
+
+app.get("/blackboxv2", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/chatgpt/blackbox2"));
+});
+
+app.get("/gogo", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/gogo"));
+});
+
+app.get("/gogo2", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/gogo2"));
+});
+
+app.get("/shorten", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/shorten"));
+});
+
+app.get("/hastebin", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/hastebin"));
+});
+
+app.get("/gpt3-turbo", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/chatgpt/gpt4"));
+});
+
+app.get("/gpt", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/chatgpt/gpt1"));
+});
+
+app.get("/gpt4", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/chatgpt/gpt5"));
+});
+
+app.get("/gpt4-turbo", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/chatgpt/gpt2"));
+});
+
+app.get("/gptfun", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/chatgpt/gpt3"));
+});
+
+app.get("/hercai", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/chatgpt/hercai"));
+});
+
+app.get("/okeyai", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/chatgpt/okayai"));
+});
+
+app.get("/spotify/search", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/spotify"));
+});
+
+app.get("/video", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/video"));
+});
+
+app.get("/ytdl", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/ytdl"));
+});
+
+app.get("/loginn", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/login/fb"));
+});
+
+app.get("/xyz", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/cliff/docs.html"));
+});
+
+app.get("*", async function (req, res) {
+  res.sendFile(path.join(__dirname, "cliff/404.html"));
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

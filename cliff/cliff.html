@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="author" content="Yazky">  
+    <meta property="og:image" content="" />
+    <meta property="og:image:type" content="image/jpeg" />
+
+    <title>Swordigo.swordslush</title>
+    <link rel="icon" href="https://i.imgur.com/4K8U5UL.png" />
+    <link rel="shortcut icon" href="https://i.imgur.com/4K8U5UL.png" type="image/x-icon" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .background {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .bgLogo {
+            position: absolute;
+            top: 40%;
+            left: 20%;
+            transform: translate(-50%, -70%);
+            font-size: 10em;
+            z-index: 0;
+            color: rgba(240, 248, 255, 0.08);
+            /*            overflow-y: hidden;*/
+            animation: rotor 90s infinite, rotor2 90s infinite;
+        }
+
+        @keyframes rotor {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotor2 {
+            0% {
+                transform: skewY(0deg);
+            }
+
+            100% {
+                transform: skewY(360deg);
+            }
+        }
+
+
+        .mainLogo {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
+            background-color: #000000;
+        }
+
+        .wrapper {
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            flex-direction: row;
+            flex-flow: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            position: relative;
+            flex: 1 1 350px;
+            /*  Stretching: */
+            /*            flex: 0 1 350px;*/
+            /*  No stretching: */
+            height: 100px;
+            margin: 20px;
+            border: 1px solid white;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            color: orangered;
+            text-align: center;
+            z-index: 3;
+        }
+
+        .box a {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: aliceblue;
+            font-size: 30px;
+            line-height: 100px;
+            transition: 0.5s;
+        }
+
+        .box:hover a {
+            color: orangered;
+        }
+
+
+
+        .box a img {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            -webkit-filter: invert(0);
+            filter: invert(0);
+            max-width: 50px;
+            margin: 20px;
+            transform: scale(1);
+            transition: 0.5s;
+        }
+
+        .box:hover img {
+            transform: scale(1.1);
+        }
+
+        .line {
+            font-family: 'Anonymous Pro', monospace;
+            color: aliceblue;
+            width: 16em;
+            margin: 0 auto;
+            border-right: 2px solid rgba(255, 255, 255, 0.75);
+            font-size: 180%;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            transform: translateY(-50%);
+            z-index: 4;
+        }
+
+        .line2 {
+            font-family: 'Anonymous Pro', monospace;
+            color: aliceblue;
+            width: 16em;
+            margin: 0 auto;
+            border-right: 2px solid rgba(255, 255, 255, 0.75);
+            font-size: 180%;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            transform: translateY(-50%);
+            z-index: 4;
+        }
+
+.anim-typewriter {
+            animation: typewriter 4s steps(40) 1s 1 normal both,
+                blinkTextCursor 500ms steps(40) infinite normal;
+        }
+
+        .anim-typewriter2 {
+            animation: typewriter2 4s steps(30) 7s 1 normal both,
+                blinkTextCursor 500ms steps(30) 7s infinite normal;
+        }
+
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 18em;
+            }
+        }
+
+        @keyframes typewriter2 {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 14em;
+            }
+        }
+
+        @keyframes blinkTextCursor {
+            from {
+                border-right-color: rgba(255, 255, 255, 0.75);
+            }
+
+            to {
+                border-right-color: transparent;
+            }
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 10px;
+            color: aliceblue;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 798px) {
+
+            .bgLogo {
+                position: absolute;
+                top: 40%;
+                left: 10%;
+                transform: translate(-50%, -70%);
+                font-size: 4em;
+            }
+
+            .line,
+            .line2 {
+                font-size: 100%;
+            }
+
+            .box {
+                position: relative;
+                /*            flex: 1 1 250px;*/
+                /*  Stretching: */
+                flex: 0 1 250px;
+                /*  No stretching: */
+                height: 80px;
+                margin: 10px;
+                border: 1px solid white;
+                border-radius: 15px;
+                background: rgba(0, 0, 0, 0.9);
+                color: orangered;
+                text-align: center;
+                z-index: 3;
+            }
+
+            .box a {
+                display: block;
+                font-size: 20px;
+                line-height: 80px;
+                transition: 0.5s;
+            }
+
+            .box a img {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                -webkit-filter: invert(0);
+                filter: invert(0);
+                max-width: 40px;
+                margin: 10px;
+                transform: scale(1);
+                transition: 0.5s;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mainLogo">
+        <div class="bgLogo">swordigo.swordslush</div>
+        <canvas class="background"></canvas>
+        <p class="line anim-typewriter">Hello and welcome on my page!</p>
+        <p class="line2 anim-typewriter2">You can find me here:</p>
+        <div class="wrapper">
+            <div class="box pink"><a href="https://www.facebook.com/swordigo.swordslush" target="_blank"><img src="" alt="">Facebook</a></div>
+            <div class="box purple"><a href="/xyz" target="_blank"><img src="" alt=""> Rest-Api</a></div>
+            <div class="box blue"><a href="https://m.me/swordigo.swordslush/" target="_blank"><img src="" alt="">Messenger</a></div>
+            <div class="box green"><a href="https://m.me/j/Aba5yCBMo1QI-KfO/" target="_blank"><img src="" alt="">ＢＥＮＩＧＧＥＲＳ</a></div>
+        </div>
+        <!--        <div class="logo">Yazky</div>-->
+    </div>
+        <footer>&copy; CliffVincent <span>2024</span></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
+    </script>
+    <script>
+        window.onload = function() {
+            var particles = Particles.init({
+                selector: '.background',
+                color: ['#6f0031', '#006c00', '#004141', '#a6ad00'],
+                maxParticles: 180,
+                connectParticles: true,
+                responsive: [{
+                    breakpoint: 768,
+                    options: {
+                        maxParticles: 80
+                    }
+                }, {
+                    breakpoint: 425,
+                    options: {
+                        maxParticles: 60,
+                        connectParticles: true
+                    }
+                }, {
+                    breakpoint: 320,
+                    options: {
+                        maxParticles: 30 // 0 = disables particles.js
+                    }
+                }]
+            });
+        }
+    </script>
+</body></html>

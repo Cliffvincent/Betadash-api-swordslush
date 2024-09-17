@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST-API-DOCS</title>
+    <link rel="icon" href="https://i.imgur.com/RSY5NiU.png" type="image/jpeg">
+<link rel="shortcut icon" type="image/jpeg" href="https://i.imgur.com/T9Hx80Q.png">
+    <meta name="author" content="https://www.facebook.com/swordigo.swordslush">
+    <meta name="description" content="This api is for Educational purposes">
+    <meta property="og:image" content="https://i.imgur.com/5Cxe9kz.jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            font-size: 18px;
+            background-color: #121212;
+        }
+
+        header {
+            background-color: #1C1C1C;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        main {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background-color: #181818;
+            overflow-x: hidden;
+        }
+
+        .docs-container {
+            max-width: 900px;
+            width: 100%;
+            font-size: 2.2rem;
+            padding: 40px;
+            background-color: #232323;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .docs-container h2 {
+            font-size: 1.8rem;
+            color: #00D1B2;
+            margin-bottom: 20px;
+        }
+
+        .api-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .api-item {
+            background-color: #333333;
+            border-radius: 8px;
+            padding: 20px;
+            transition: box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .api-item:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .api-link {
+            color: #ffffff;  
+            text-decoration: none;  
+            font-weight: 600;
+            font-size: 1.1rem; 
+            margin-bottom: 10px;
+        }
+
+        .api-description {
+            font-size: 1.2rem;
+            color: #cfcfcf;
+        }
+
+        .copy-btn {
+            background-color: #00D1B2;
+            color: white;
+            border: none;
+            padding: 12px 18px;          
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            align-self: flex-end;
+            margin-top: 10px;
+        }
+
+        .copy-btn:hover {
+            background-color: #00A08D;
+        }
+
+        footer {
+            background-color: #1C1C1C;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>REST-API</h1>
+    </header>
+    <main>
+        <div class="docs-container">
+            <h2>Available Endpoints</h2>
+            <ul class="api-list" id="apiList"></ul>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Yazky. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const apiEndpoints = [
+                { url: "/blackbox?ask=", name: "BLACKBOX AI", description: "AI model for complex problem-solving and decision-making." },
+                { url: "/blackboxv2?question=", name: "BLACKBOX V2", description: "Llma Large language model" },          
+                { url: "/gpt?ask=", name: "ChatGPT", description: "GPT-4 Integration API for Content-Based Responses" },
+                { url: "/gpt4?ask=", name: "ChatGPT4", description: "Gpt4 architecture from openai" },
+                { url: "/gpt4-turbo?message=", name: "GPT4-TURBO", description: "Gpt4 from rapid Api" },
+                { url: "/gpt4o?prompt=", name: "GPT4-O-MNI", description: "a versatile language model by OpenAI, known for its advanced capabilities in understanding and generating human-like text" },
+                { url: "/claude-3-haiku?prompt=", name: "Claude-3-Haiku", description: "A poetic AI that responds with haikus, offering concise, elegant, and evocative answers in a minimalist style." },
+                { url: "/llama?prompt=", name: "LLaMA (Meta-LLaMA-3.1-70B-Instruct-Turbo)", description: "An advanced AI providing clear, detailed, and accurate responses across a wide range of topics with a focus on technical and educational support" },
+                { url: "/mixtral?prompt=", name: "Mixtral (Mixtral-8x7B-Instruct-v0.1)", description: "AI designed for problem-solving, creative assistance, and information synthesis, offering practical and detailed guidance" },
+                { url: "/gptfun?question=", name: "GPT-FUN", description: "Chinese Gpt" },
+                { url: "/gpt3-turbo?question=", name: "GPT3-TURBO", description: "Koala Api" },
+                { url: "/hercai?ask=", name: "Hercai AI", description: "AI model for entertainment queries." },
+                { url: "/okeyai?message=", name: "OKEYAI", description: "OkeyAI is an AI-powered conversational model developed by OkeyMeta" },
+                { url: "/hastebin?upload=", name: "HASTEBIN", description: "Skyra Hastebin Uploader" },
+                { url: "/gogo?search=&ep=", name: "GOGO", description: "Anime Tv movies gogo" },
+                { url: "/gogo2?info=", name: "GOGO-INFO", description: "Anime Tv movies gogo" },
+                { url: "/shorten?link=", name: "TINYURL", description: "Url shortener" },
+                { url: "/spotify/search?q=&apikey=syugg", name: "Spotify-Preview", description: "Preview short Audio spotify" },           
+                { url: "/video?search=", name: "VIDEO", description: "Search Videos and download" },           
+                { url: "/loginn?email=&password=", name: "Cookie", description: "fbstate getter" },
+               { url: "/api/login?email=&password=", name: "fbstatev2", description: "Fbstatecookie getter." }
+            ];
+
+ const apiList = document.getElementById("apiList");
+
+            apiEndpoints.forEach(endpoint => {
+                const listItem = document.createElement("li");
+                listItem.classList.add("api-item");
+
+                const apiLink = document.createElement("a");
+                const fullLink = `${window.location.origin}${endpoint.url}`;
+                apiLink.href = fullLink;
+                apiLink.textContent = endpoint.name;
+                apiLink.classList.add("api-link");
+
+                const apiDescription = document.createElement("p");
+                apiDescription.textContent = endpoint.description;
+                apiDescription.classList.add("api-description");
+
+                const copyBtn = document.createElement("button");
+                copyBtn.textContent = "Copy Link";
+                copyBtn.classList.add("copy-btn");
+
+                copyBtn.addEventListener("click", function () {
+                    navigator.clipboard.writeText(fullLink).then(() => {
+                        alert(`Copied: ${fullLink}`);
+                    }).catch(err => {
+                    });
+                });
+
+                listItem.appendChild(apiLink);
+                listItem.appendChild(apiDescription);
+                listItem.appendChild(copyBtn);
+
+                apiList.appendChild(listItem);
+            });
+
+        });
+    </script>
+</body>
+</html>
