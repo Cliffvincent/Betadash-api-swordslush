@@ -94,10 +94,6 @@ app.get("/ytdl", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/ytdl"));
 });
 
-app.get("/loginn", async function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/login/fb"));
-});
-
 app.get("/xyz", async function (req, res) {
   res.sendFile(path.join(__dirname, "/cliff/docs.html"));
 });
