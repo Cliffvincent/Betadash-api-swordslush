@@ -1,7 +1,6 @@
 const MSIAI = require('msiai');
-const request = require('request');
-
 const msiai = new MSIAI();
+const fetch = require('node-fetch');
 
 exports.name = '/mixtral';
 exports.index = async (req, res) => {
@@ -21,14 +20,15 @@ exports.index = async (req, res) => {
 
         const translateThis = response.reply;
         const lang = 'en';
+        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&q=${encodeURIComponent(translateThis)}`;
 
-        request(encodeURI(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&q=${translateThis}`), (err, _, body) => {
-            if (err) return res.status(500).send({ error: "Translation error." });
-            const retrieve = JSON.parse(body);
-            let text = '';
-            retrieve[0].forEach(item => (item[0]) ? text += item[0] : '');
-            res.send({ response: text });
-        });
+        const translationResponse = await fetch(url);
+        const body = await translationResponse.json();
+        let text = '';
+        body[0].forEach(item => (item[0]) ? text += item[0] : '');
+        const fromLang = (body[2] === body[8][0][0]) ? body[2] : body[8][0][0];
+
+        res.send({ response: text, fromLang });
     } catch (error) {
         res.status(500).send({ error: "Error processing the request." });
     }
