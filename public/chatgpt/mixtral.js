@@ -1,4 +1,5 @@
 const MSIAI = require('msiai');
+const request = require('request');
 
 const msiai = new MSIAI();
 
@@ -18,7 +19,16 @@ exports.index = async (req, res) => {
             online: true
         });
 
-        res.send({ response: response.reply });
+        const translateThis = response.reply;
+        const lang = 'en';
+
+        request(encodeURI(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&q=${translateThis}`), (err, _, body) => {
+            if (err) return res.status(500).send({ error: "Translation error." });
+            const retrieve = JSON.parse(body);
+            let text = '';
+            retrieve[0].forEach(item => (item[0]) ? text += item[0] : '');
+            res.send({ response: text });
+        });
     } catch (error) {
         res.status(500).send({ error: "Error processing the request." });
     }
