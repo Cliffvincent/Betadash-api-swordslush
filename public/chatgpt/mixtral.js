@@ -1,11 +1,13 @@
 const MSIAI = require('msiai');
+const axios = require('axios');
+
 const msiai = new MSIAI();
-const fetch = require('node-fetch');
 
 exports.name = '/mixtral';
 exports.index = async (req, res) => {
     try {
         const userPrompt = req.query.prompt;
+        const lang = 'en';
 
         if (!userPrompt) {
             return res.status(400).send({ error: "Please provide a prompt in the query." });
@@ -19,16 +21,15 @@ exports.index = async (req, res) => {
         });
 
         const translateThis = response.reply;
-        const lang = 'en';
-        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&q=${encodeURIComponent(translateThis)}`;
+        const translateUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&q=${encodeURIComponent(translateThis)}`;
 
-        const translationResponse = await fetch(url);
-        const body = await translationResponse.json();
+        const translationResponse = await axios.get(translateUrl);
+        const retrieve = translationResponse.data;
         let text = '';
-        body[0].forEach(item => (item[0]) ? text += item[0] : '');
-        const fromLang = (body[2] === body[8][0][0]) ? body[2] : body[8][0][0];
+        retrieve[0].forEach(item => { if (item[0]) text += item[0]; });
+        const fromLang = retrieve[2] === retrieve[8][0][0] ? retrieve[2] : retrieve[8][0][0];
 
-        res.send({ response: text, fromLang });
+        res.send({ response: text, translatedFrom: fromLang });
     } catch (error) {
         res.status(500).send({ error: "Error processing the request." });
     }
