@@ -1,8 +1,8 @@
 const MSIAI = require('msiai');
-
 const msiai = new MSIAI();
+const request = require('request');
 
-exports.name = '/llama';
+exports.name = '/mixtral';
 exports.index = async (req, res) => {
     try {
         const userPrompt = req.query.prompt;
@@ -12,13 +12,22 @@ exports.index = async (req, res) => {
         }
 
         const response = await msiai.chat({
-            model: "llama",
+            model: "mixtral",
             prompt: userPrompt,
-            system: "You are an advanced knowledge assistant designed to provide accurate and detailed responses. Be clear, informative, and ensure your answers are well-supported by evidence",
+            system: "You are a versatile assistant providing clear and accurate responses across various topics. Ensure your answers are concise, helpful, and tailored to the user's needs",
             online: true
         });
 
-        res.send({ response: response.reply });
+        const translateThis = response.reply;
+        const lang = 'en';
+        request(encodeURI(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&q=${translateThis}`), (err, response, body) => {
+            if (err) return res.status(500).send({ error: "Translation error occurred." });
+            const retrieve = JSON.parse(body);
+            let text = '';
+            retrieve[0].forEach(item => (item[0]) ? text += item[0] : '');
+            const fromLang = (retrieve[2] === retrieve[8][0][0]) ? retrieve[2] : retrieve[8][0][0];
+            res.send({ response: text, fromLang });
+        });
     } catch (error) {
         res.status(500).send({ error: "Error processing the request." });
     }
