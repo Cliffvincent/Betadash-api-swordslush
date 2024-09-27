@@ -86,6 +86,10 @@ app.get("/regco", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/regco"));
 });
 
+app.get("/gdrive", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/gdrive"));
+});
+
 app.get("/spotify/search", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/spotify"));
 });
