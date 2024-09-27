@@ -18,6 +18,38 @@ app.get("/fbcover", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/fbcover"));
 });
 
+app.get("/fbpost", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/fbpost"));
+});
+
+app.get("/affect", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/affect"));
+});
+
+app.get("/fbcoverv2", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/fbcoverv2"));
+});
+
+app.get("/trash", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/trash"));
+});
+
+app.get("/paint", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/paint"));
+});
+
+app.get("/slap", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/slap"));
+});
+
+app.get("/avatar", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/avatar"));
+});
+
+app.get("/avatarv2", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/avatarv2"));
+});
+
 app.get("/blackbox", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/chatgpt/blackbox"));
 });
