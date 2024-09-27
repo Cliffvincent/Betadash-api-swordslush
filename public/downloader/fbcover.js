@@ -11,21 +11,15 @@ exports.index = async (req, res) => {
   }
 
   try {
-    const response = await axios.get(`https://fbcoverapi.adaptable.app/fbcover`, {
+    const response = await axios.get('https://fbcoverapi.adaptable.app/fbcover', {
       responseType: 'arraybuffer',
-      params: { name, color, address, email, subname, uid, sdt }
+      params: { name, color, address, email, subname, uid, sdt },
     });
 
-    const filePath = path.join(__dirname, 'cache', 'fbcover.jpg');
+ 
+    res.set('Content-Type', 'image/png');
+    res.send(response.data);
 
-    fs.writeFileSync(filePath, response.data);
-    res.sendFile(filePath, (err) => {
-      if (err) {
-        res.status(500).json({ error: 'Error sending file' });
-      } else {
-        fs.unlinkSync(filePath);
-      }
-    });
   } catch (error) {
     res.status(500).json({ error: 'An error occurred while processing your request' });
   }
