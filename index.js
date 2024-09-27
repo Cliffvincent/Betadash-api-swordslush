@@ -82,6 +82,10 @@ app.get("/okeyai", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/chatgpt/okayai"));
 });
 
+app.get("/regco", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/regco"));
+});
+
 app.get("/spotify/search", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/spotify"));
 });
