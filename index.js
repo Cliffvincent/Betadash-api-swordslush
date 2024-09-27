@@ -10,24 +10,9 @@ app.get("/", async function (req, res) {
   res.sendFile(path.join(__dirname, "/cliff/cliff.html"));
 });
 
-app.get("/claude-3-haiku", async function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/chatgpt/claude"));
-});
 
 app.get("/lookup", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/stalk/lookup"));
-});
-
-app.get("/gpt4o", async function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/chatgpt/gpt4o"));
-});
-
-app.get("/llama", async function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/chatgpt/llama"));
-});
-
-app.get("/mixtral", async function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/chatgpt/mixtral"));
 });
 
 app.get("/blackbox", async function (req, res) {
