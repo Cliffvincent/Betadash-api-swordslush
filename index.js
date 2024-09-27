@@ -10,9 +10,12 @@ app.get("/", async function (req, res) {
   res.sendFile(path.join(__dirname, "/cliff/cliff.html"));
 });
 
-
 app.get("/lookup", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/stalk/lookup"));
+});
+
+app.get("/fbcover", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/fbcover"));
 });
 
 app.get("/blackbox", async function (req, res) {
