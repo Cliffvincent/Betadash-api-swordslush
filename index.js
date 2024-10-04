@@ -14,6 +14,10 @@ app.get("/lookup", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/stalk/lookup"));
 });
 
+app.get("/mark", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/mark"));
+});
+
 app.get("/fbcover", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/fbcover"));
 });
