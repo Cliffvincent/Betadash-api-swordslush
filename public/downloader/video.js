@@ -1,29 +1,33 @@
 const axios = require('axios');
-const ytFinder = require('yt-finder-nextgen');
+const { SoundCloud } = require('scdl-core');
 
-exports.name = '/video';
+exports.name = "/video"; 
 exports.index = async (req, res) => {
-    const query = req.query.search;
-    if (!query) {
-        return res.status(400).send({ error: 'parameter "search" is required' });
+  try {
+    const search = req.query.search;
+    if (!search) {
+      return res.status(400).json({ error: 'Search query parameter is required' });
     }
 
-    try {
-        const searchResult = await ytFinder.search(query, 1);
-        const video = searchResult[0];
-        const downloadApiUrl = `https://www.noobs-api.000.pe/dipto/alldl?url=${encodeURIComponent(video.url)}`;
+    const axiosResponse = await 
+axios.get(`https://rest-api-production-5054.up.railway.app/soundcloud?query=${search}`);
+    const firstUrl = axiosResponse.data.audio_url;
 
-        const response = await axios.get(downloadApiUrl);
-        const downloadResult = response.data;
+    const permalink = firstUrl;
+    const streamOptions = {
+      highWaterMark: 1 << 25
+    };
 
-        const videoResult = {
-            title: downloadResult.Title,
-            downloadUrl: downloadResult.result
-        };
+    await SoundCloud.connect();
+    const stream = await SoundCloud.download(permalink, streamOptions);
 
-        res.json(videoResult);
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ error: 'Skill issue' });
-    }
+    res.setHeader('Content-Type', 'video/mp4');
+    stream.pipe(res);
+
+    setTimeout(() => {
+      stream.destroy();
+    }, 5 * 60 * 1000);
+  } catch (error) {
+    res.status(500).send('Internal Server Error');
+  }
 };
