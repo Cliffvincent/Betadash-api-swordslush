@@ -5,7 +5,7 @@ exports.name = '/video';
 exports.index = async (req, res) => {
     const query = req.query.search;
     if (!query) {
-        return res.status(400).send({error: 'parameter "search" is required'});
+        return res.status(400).send({ error: 'parameter "search" is required' });
     }
 
     try {
@@ -15,20 +15,18 @@ exports.index = async (req, res) => {
         }
 
         const video = searchResult[0];
-        const downloadApiUrl = `https://joncll.serv00.net/videodl.php?url=${encodeURIComponent(video.url)}`;
+        const downloadApiUrl = `https://www.noobs-api.000.pe/dipto/alldl?url=${encodeURIComponent(video.url)}`;
 
         const response = await axios.get(downloadApiUrl);
         const downloadResult = response.data;
 
         const videoResult = {
-            title: downloadResult.title,
-            thumbnail: downloadResult.thumbnail,
-            downloadUrl: downloadResult.video
+            title: downloadResult.Title, 
+            downloadUrl: downloadResult.result
         };
 
         res.json(videoResult);
     } catch (error) {
-        console.error('Error:', error);
         res.status(500).json({ error: 'Skill issue' });
     }
 };
