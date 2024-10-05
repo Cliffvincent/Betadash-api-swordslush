@@ -10,10 +10,6 @@ exports.index = async (req, res) => {
 
     try {
         const searchResult = await ytFinder.search(query, 1);
-        if (searchResult.length === 0) {
-            return res.status(404).send('No videos found');
-        }
-
         const video = searchResult[0];
         const downloadApiUrl = `https://www.noobs-api.000.pe/dipto/alldl?url=${encodeURIComponent(video.url)}`;
 
@@ -21,12 +17,13 @@ exports.index = async (req, res) => {
         const downloadResult = response.data;
 
         const videoResult = {
-            title: downloadResult.Title, 
+            title: downloadResult.Title,
             downloadUrl: downloadResult.result
         };
 
         res.json(videoResult);
     } catch (error) {
+        console.error('Error:', error);
         res.status(500).json({ error: 'Skill issue' });
     }
 };
