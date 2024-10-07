@@ -14,10 +14,6 @@ app.get("/lookup", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/stalk/lookup"));
 });
 
-app.get("/mark", async function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/downloader/mark"));
-});
-
 app.get("/fbcover", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/fbcover"));
 });
@@ -26,24 +22,12 @@ app.get("/fbpost", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/fbpost"));
 });
 
-app.get("/affect", async function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/downloader/affect"));
-});
-
 app.get("/fbcoverv2", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/fbcoverv2"));
 });
 
 app.get("/trash", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/trash"));
-});
-
-app.get("/paint", async function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/downloader/paint"));
-});
-
-app.get("/slap", async function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/downloader/slap"));
 });
 
 app.get("/avatar", async function (req, res) {
@@ -114,10 +98,6 @@ app.get("/spotify/search", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/spotify"));
 });
 
-app.get("/video", async function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/downloader/video"));
-});
-
 app.get("/dreamforth", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/df"));
 });
@@ -138,3 +118,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
