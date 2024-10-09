@@ -9,7 +9,7 @@ exports.index = async (req, res) => {
   }
 
   try {
-    const response = await axios.get('https://deku-rest-api.gleeze.com/canvas/fbcoverv3', {
+    const response = await axios.get('https://deku-rest-apis.ooguy.com/canvas/fbcoverv3', {
       responseType: 'arraybuffer',
       params: { uid, birthday, love, location, hometown, name, follow, gender }
     });
