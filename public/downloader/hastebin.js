@@ -10,6 +10,7 @@ exports.index = async (req, res) => {
 
 const end = ["js", "php", "csharp", "css", "js", "kotlin", "htm"];
   const randomIndex = Math.floor(Math.random() * end.length);
+    const tae = end[randomIndex];
 
     const url = 'https://hastebin.skyra.pw/documents';
     const headers = {
@@ -37,8 +38,8 @@ const end = ["js", "php", "csharp", "css", "js", "kotlin", "htm"];
                 status: "200",
                 message: 'Document uploaded successfully',
                 author: 'cliff',
-                skyra: `https://hastebin.skyra.pw/${documentKey}.${randomIndex}`,
-                raw: `https://hastebin.skyra.pw/raw/${documentKey}.${randomIndex}`,
+                skyra: `https://hastebin.skyra.pw/${documentKey}.${tae}`,
+                raw: `https://hastebin.skyra.pw/raw/${documentKey}.${tae}`,
             };
             res.status(200).json(documentUrls);
         } else {
