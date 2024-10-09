@@ -18,6 +18,10 @@ app.get("/fbcover", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/fbcover"));
 });
 
+app.get("/scrape", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/downloader/scrape"));
+});
+
 app.get("/fbpost", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/fbpost"));
 });
