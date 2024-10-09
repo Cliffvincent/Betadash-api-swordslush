@@ -9,7 +9,7 @@ exports.index = async (req, res) => {
   }
 
   try {
-    const response = await axios.get('https://deku-rest-api.gleeze.com/canvas/avatar', {
+    const response = await axios.get('https://deku-rest-apis.ooguy.com/canvas/avatar', {
       responseType: 'arraybuffer',
       params: { id, bgname, signature, color }
     });
