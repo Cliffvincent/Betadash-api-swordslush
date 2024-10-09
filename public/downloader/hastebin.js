@@ -8,6 +8,9 @@ exports.index = async (req, res) => {
         return res.status(400).json({ message: 'query upload string is missing' });
     }
 
+const end = ["js", "php", "csharp", "css", "js", "kotlin", "htm"];
+  const randomIndex = Math.floor(Math.random() * end.length);
+
     const url = 'https://hastebin.skyra.pw/documents';
     const headers = {
         'authority': 'hastebin.skyra.pw',
@@ -34,12 +37,8 @@ exports.index = async (req, res) => {
                 status: "200",
                 message: 'Document uploaded successfully',
                 author: 'cliff',
-                php: `https://hastebin.skyra.pw/${documentKey}.php`,
-                csharp: `https://hastebin.skyra.pw/${documentKey}.csharp`,
-                ts: `https://hastebin.skyra.pw/${documentKey}.ts`,
-                css: `https://hastebin.skyra.pw/${documentKey}.css`,
-                js: `https://hastebin.skyra.pw/${documentKey}.js`,  
-                kotlin: `https://hastebin.skyra.pw/${documentKey}.kotlin`,  
+                skyra: `https://hastebin.skyra.pw/${documentKey}.${randomIndex}`,
+                raw: `https://hastebin.skyra.pw/raw/${documentKey}.${randomIndex}`,
             };
             res.status(200).json(documentUrls);
         } else {
@@ -49,3 +48,4 @@ exports.index = async (req, res) => {
         res.status(500).json({ message: 'skills issue Error uploading the document', error: error.message });
     }
 };
+
