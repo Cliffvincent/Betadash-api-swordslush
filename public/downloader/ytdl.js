@@ -5,7 +5,7 @@ exports.index = async (req, res) => {
     const videoUrl = req.query.url;
 
     if (!videoUrl) {
-        return res.status(400).send({"Error: Missing 'url' query parameter"});
+        return res.status(400).send({"Error": "Missing 'url' query parameter"});
     }
 
     try {
