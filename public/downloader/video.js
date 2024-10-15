@@ -1,4 +1,5 @@
 const axios = require('axios');
+const yts = require('yt-search');
 
 exports.name = "/video";
 exports.index = async (req, res) => {
@@ -10,6 +11,7 @@ exports.index = async (req, res) => {
 
     try {
         const videoSearchUrl = `https://api-nako-choru-production.up.railway.app/yt?search=${searchQuery}&limit=1`;
+
         const videoResponse = await axios.get(videoSearchUrl);
         const videoData = videoResponse.data[0];
 
@@ -17,17 +19,29 @@ exports.index = async (req, res) => {
             return res.status(404).json({ error: 'Video not found' });
         }
 
-        const downloadUrl = `https://www.noobs-api.000.pe/dipto/alldl?url=${videoData.url}`;
+        const videoUrl = videoData.url;
+        const videoId = new URL(videoUrl).searchParams.get('v');
+
+        const video = await yts({ videoId });
+        const result = {
+            url: `https://youtu.be/${videoId}?si=wLIhI3mr1YV0gl9L`
+        };
+
+        const downloadUrl = `https://www.noobs-api.000.pe/dipto/alldl?url=${result.url}`;
+
         const downloadResponse = await axios.get(downloadUrl);
         const downloadResult = downloadResponse.data;
 
         const videoResult = {
             title: downloadResult.Title,
             downloadUrl: downloadResult.result,
+            time: videoData.time,
+            views: videoData.views,
+            channelName: videoData.channelName
         };
 
         res.json(videoResult);
     } catch (error) {
-        res.status(500).json({ error: 'Something went wrong' });
+        res.status(500).json({ error: 'Error fetching video or download URL' });
     }
 };
