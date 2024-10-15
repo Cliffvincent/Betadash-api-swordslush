@@ -94,10 +94,6 @@ app.get("/okeyai", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/chatgpt/okayai"));
 });
 
-app.get("/regco", async function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/downloader/regco"));
-});
-
 app.get("/video", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/video"));
 });

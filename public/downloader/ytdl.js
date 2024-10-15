@@ -5,7 +5,7 @@ exports.index = async (req, res) => {
     const videoUrl = req.query.url;
 
     if (!videoUrl) {
-        return res.status(400).send("Error: Missing 'url' query parameter");
+        return res.status(400).send({"Error: Missing 'url' query parameter"});
     }
 
     try {
@@ -17,7 +17,6 @@ exports.index = async (req, res) => {
 
         res.json(response);
     } catch (error) {
-        console.error("Error downloading video:", error);
         res.status(500).send("Error downloading video");
     }
 };

@@ -27,16 +27,18 @@ exports.index = async (req, res) => {
             url: `https://youtu.be/${videoId}?si=wLIhI3mr1YV0gl9L`
         };
 
-        const downloadUrl = `https://www.noobs-api.000.pe/dipto/alldl?url=${result.url}`;
+  const downloadUrl = `https://betadash-api-swordslush.vercel.app/ytdl?url=${result.url}`;
 
         const downloadResponse = await axios.get(downloadUrl);
-        const downloadResult = downloadResponse.data;
+        const downloadResult = downloadResponse.data.data;
 
         const videoResult = {
             title: downloadResult.Title,
-            downloadUrl: downloadResult.result,
+            downloadUrl: downloadResult.video,
             time: videoData.time,
             views: videoData.views,
+            audio: downloadResult.audio,
+            quality: downloadResult.quality,
             channelName: videoData.channelName
         };
 
