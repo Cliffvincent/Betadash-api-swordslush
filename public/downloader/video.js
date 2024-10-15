@@ -33,7 +33,7 @@ exports.index = async (req, res) => {
         const downloadResult = downloadResponse.data.data;
 
         const videoResult = {
-            title: downloadResult.Title,
+            title: downloadResult.title,
             downloadUrl: downloadResult.video,
             time: videoData.time,
             views: videoData.views,
