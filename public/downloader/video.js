@@ -1,5 +1,5 @@
 const axios = require('axios');
-const yts = require('yt-search');
+const { ytdown } = require("nayan-media-downloader");
 
 exports.name = "/video";
 exports.index = async (req, res) => {
@@ -11,7 +11,6 @@ exports.index = async (req, res) => {
 
     try {
         const videoSearchUrl = `https://api-nako-choru-production.up.railway.app/yt?search=${searchQuery}&limit=1`;
-
         const videoResponse = await axios.get(videoSearchUrl);
         const videoData = videoResponse.data[0];
 
@@ -22,23 +21,22 @@ exports.index = async (req, res) => {
         const videoUrl = videoData.url;
         const videoId = new URL(videoUrl).searchParams.get('v');
 
-        const video = await yts({ videoId });
         const result = {
             url: `https://youtu.be/${videoId}?si=wLIhI3mr1YV0gl9L`
         };
 
-  const downloadUrl = `https://betadash-api-swordslush.vercel.app/ytdl?url=${result.url}`;
-
-        const downloadResponse = await axios.get(downloadUrl);
-        const downloadResult = downloadResponse.data.data;
+        const downloadUrl = await ytdown(result.url);
+        delete downloadUrl.developer;
+        delete downloadUrl.devfb;
+        delete downloadUrl.devwp;
 
         const videoResult = {
-            title: downloadResult.title,
-            downloadUrl: downloadResult.video,
+            title: downloadUrl.data.title,
+            downloadUrl: downloadUrl.data.video,
             time: videoData.time,
             views: videoData.views,
-            audio: downloadResult.audio,
-            quality: downloadResult.quality,
+            audio: downloadUrl.data.audio,
+            quality: downloadUrl.data.quality,
             channelName: videoData.channelName
         };
 
@@ -46,4 +44,4 @@ exports.index = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Error fetching video or download URL' });
     }
-};
+});

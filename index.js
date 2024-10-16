@@ -106,10 +106,6 @@ app.get("/dreamforth", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/df"));
 });
 
-app.get("/ytdl", async function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/downloader/ytdl"));
-});
-
 app.get("/xyz", async function (req, res) {
   res.sendFile(path.join(__dirname, "/cliff/docs.html"));
 });
