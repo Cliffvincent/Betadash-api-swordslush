@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@ozrageharm/blackbox-ai": "^1.1.1",
+    "@ruingl/gptx": "^1.0.6",
     "@types/node": "^18.0.6",
     "axios": "^1.7.7",
     "betabotz-tools": "^0.0.7",
@@ -24,13 +25,13 @@
     "gradient-string": "^2.0.2",
     "hercai": "^12.3.2",
     "msiai": "^2.2.2",
-    "nayan-media-downloader": "^2.5.4",
     "node-fetch": "^3.3.2",
     "path": "^0.12.7",
     "qs": "^6.13.0",
     "readline-sync": "^1.4.10",
     "request": "^2.88.2",
     "rsnchat": "^4.0.1",
+    "socket.io": "^4.8.0",
     "url": "^0.11.4"
   }
 }

@@ -123,6 +123,7 @@
         footer {
             background-color: #1C1C1C;
             color: white;
+            font-size: 10px;
             text-align: center;
             padding: 20px;
             position: relative;
@@ -139,9 +140,9 @@
             <ul class="api-list" id="apiList"></ul>
         </div>
     </main>
-    <footer>
+<!-- <footer>
         <p>&copy; 2024 Yazky. All rights reserved.</p>
-    </footer>
+    </footer> -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const apiEndpoints = [
@@ -162,47 +163,79 @@
                 { url: "/fbcover?name=cliffvincent&color=black&address=Mandaluyong&email=yazkysordjan@gmail.com&subname=yazky&uid=61557118090040&sdt=09810494012", name: "FBCOVER", description: "facebook canvas" },
                 { url: "/fbcoverv2?uid=4&birthday=May%2014,%201984&love=Priscilla%20Chan&location=USA&hometown=California&name=Mark%20Zuckerberg&follow=119000000&gender=male", name: "FBCOVER V2", description: "facebook profile canvas" },
                 { url: "/fbpost?uid=4&text=hi&name=Mark%20Zuckerberg", name: "FBPOST", description: "Facebook post canvas" },
-                { url: "/spotify/search?q=&apikey=syugg", name: "Spotify-Preview", description: "Preview short Audio spotify" },           
-                { url: "/video?search=", name: "VIDEO", description: "Search Videos and download" },
-                { url: "/api/login?email=&password=", name: "fbstatev2", description: "Fbstatecookie getter." }
+                { url: "/spotify/search?q=&apikey=syugg", name: "Spotify-Preview", description: "Preview short Audio spotify" },
+                { url: "/api/login?email=&password=", name: "fbstatev2", description: "Fbstatecookie getter." },
+                { url: "/gpt-4?ask=", name: "GPT-4", description: "GPT-4 model Large language from openai" },
+{ url: "/gpt4o-free?ask=", name: "GPT-4o-Free", description: "GPT-4o free model variant from OpenAI" },
+{ url: "/gemini-pro?ask=", name: "Gemini-Pro", description: "Gemini Pro, a high-performance conversational model" },
+{ url: "/gpt-3.5-turbo?ask=", name: "GPT-3.5-Turbo", description: "GPT-3.5 Turbo, a fast and efficient model by OpenAI" },
+{ url: "/llama-3.1-405b-instruct-free?ask=", name: "Llama-3.1-405b-Instruct-Free", description: "Llama 3.1 instruct-based model for free use" },
+{ url: "/gpt-4-v2?ask=", name: "GPT-4-v2", description: "Updated GPT-4 model with enhanced capabilities" },
+{ url: "/gpt-4-0613?ask=", name: "GPT-4-0613", description: "GPT-4 version 0613 with advanced performance" },
+{ url: "/gpt-4-32k?ask=", name: "GPT-4-32k", description: "GPT-4 with a larger 32k token limit" },
+{ url: "/gpt-4-32k-0314?ask=", name: "GPT-4-32k-0314", description: "Earlier release of GPT-4 with 32k token support" },
+{ url: "/gpt-4-0314?ask=", name: "GPT-4-0314", description: "GPT-4 version 0314" },
+{ url: "/gpt-3.5-turbo-16k?ask=", name: "GPT-3.5-Turbo-16k", description: "GPT-3.5 Turbo with 16k token limit" },
+{ url: "/gpt-3.5-turbo-0613?ask=", name: "GPT-3.5-Turbo-0613", description: "GPT-3.5 Turbo version 0613" },
+{ url: "/gpt-3.5-turbo-16k-0613?ask=", name: "GPT-3.5-Turbo-16k-0613", description: "GPT-3.5 Turbo 16k version 0613" },
+{ url: "/gpt-3.5-turbo-0301?ask=", name: "GPT-3.5-Turbo-0301", description: "GPT-3.5 Turbo version 0301" },
+{ url: "/text-davinci-003?ask=", name: "Text-Davinci-003", description: "Davinci series, Text-Davinci-003 from OpenAI" },
+{ url: "/text-davinci-002?ask=", name: "Text-Davinci-002", description: "Text-Davinci-002 model from OpenAI" },
+{ url: "/code-davinci-002?ask=", name: "Code-Davinci-002", description: "Code generation-focused Davinci model" },
+{ url: "/gpt-3?ask=", name: "GPT-3", description: "GPT-3, the third generation model by OpenAI" },
+{ url: "/text-curie-001?ask=", name: "Text-Curie-001", description: "Text-Curie, a lighter model variant of GPT" },
+{ url: "/text-babbage-001?ask=", name: "Text-Babbage-001", description: "Text-Babbage, a smaller GPT variant" },
+{ url: "/text-ada-001?ask=", name: "Text-Ada-001", description: "Text-Ada, an efficient GPT variant" },
+{ url: "/davinci?ask=", name: "Davinci", description: "Davinci, one of the largest GPT models" },
+{ url: "/curie?ask=", name: "Curie", description: "Curie, a general-purpose GPT model" },
+{ url: "/babbage?ask=", name: "Babbage", description: "Babbage, a compact and fast GPT model" },
+{ url: "/ada?ask=", name: "Ada", description: "Ada, an efficient model for smaller tasks" },
+{ url: "/babbage-002?ask=", name: "Babbage-002", description: "Second iteration of Babbage GPT model" },
+{ url: "/davinci-002?ask=", name: "Davinci-002", description: "Davinci model with enhanced reasoning capabilities" },
+{ url: "/gpt-4o-mini-free?ask=", name: "GPT-4o-Mini-Free", description: "A lightweight, free version of GPT-4o" },
+{ url: "/gpt-4o-mini?ask=", name: "GPT-4o-Mini", description: "GPT-4o Mini version, optimized for faster responses" },
+{ url: "/gpt-4o?ask=", name: "GPT-4o-Free", description: "Free version of GPT-4o architecture" },
+{ url: "/gpt-4-turbo-2024-04-09?ask=", name: "GPT-4-Turbo-2024", description: "GPT-4 Turbo version, released April 2024" },
+{ url: "/gpt-4o-2024-08-06?ask=", name: "GPT-4o-2024", description: "GPT-4o version released in August 2024" },
+{ url: "/grok-2?ask=", name: "Grok-2", description: "Grok-2, a conversational model from a newer architecture" },
+{ url: "/grok-2-mini?ask=", name: "Grok-2-Mini", description: "A lightweight version of Grok-2" },
+{ url: "/claude-3-opus-20240229?ask=", name: "Claude-3-Opus", description: "Claude-3 model, Opus version from 2024" },
+{ url: "/claude-3-opus-20240229-gcp?ask=", name: "Claude-3-Opus-GCP", description: "Claude-3 Opus, optimized for GCP environments" },
+{ url: "/claude-3-sonnet-20240229?ask=", name: "Claude-3-Sonnet", description: "Claude-3 Sonnet, released in 2024" },
+{ url: "/claude-3-5-sonnet-20240620?ask=", name: "Claude-3.5-Sonnet", description: "Claude-3.5 Sonnet version from mid-2024" },
+{ url: "/claude-3-haiku-20240307?ask=", name: "Claude-3-Haiku", description: "Claude-3 Haiku, a compact version" },
+{ url: "/claude-2.1?ask=", name: "Claude-2.1", description: "Claude-2.1, earlier model of Claude architecture" },
+{ url: "/gemini-1.5-flash-exp-0827?ask=", name: "Gemini-1.5-Flash-Exp", description: "Gemini-1.5 Flash, experimental version from 2024" },
+{ url: "/gemini-1.5-pro-exp-0827?ask=", name: "Gemini-1.5-Pro-Exp", description: "Gemini-1.5 Pro, experimental release from 2024" }
             ];
 
  const apiList = document.getElementById("apiList");
-
             apiEndpoints.forEach(endpoint => {
                 const listItem = document.createElement("li");
                 listItem.classList.add("api-item");
-
                 const apiLink = document.createElement("a");
                 const fullLink = `${window.location.origin}${endpoint.url}`;
                 apiLink.href = fullLink;
                 apiLink.textContent = endpoint.name;
                 apiLink.classList.add("api-link");
-
                 const apiDescription = document.createElement("p");
                 apiDescription.textContent = endpoint.description;
                 apiDescription.classList.add("api-description");
-
                 const copyBtn = document.createElement("button");
                 copyBtn.textContent = "Copy Link";
                 copyBtn.classList.add("copy-btn");
-
                 copyBtn.addEventListener("click", function () {
                     navigator.clipboard.writeText(fullLink).then(() => {
                         alert(`Copied: ${fullLink}`);
                     }).catch(err => {
                     });
                 });
-
                 listItem.appendChild(apiLink);
                 listItem.appendChild(apiDescription);
                 listItem.appendChild(copyBtn);
-
                 apiList.appendChild(listItem);
             });
-
         });
     </script>
 </body>
 </html>
-
