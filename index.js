@@ -437,7 +437,7 @@ app.get('/gpt-4o-mini', (req, res) => {
     handle('gpt-4o-mini', query, res);
 });
 
-app.get('/gpt-4o-free', (req, res) => {
+app.get('/gpt-4o-freev2', (req, res) => {
     const query = req.query.ask;
     if (!query) return res.status(400).send('Query parameter "ask" is required');
     handle('gpt-4o-free', query, res);
