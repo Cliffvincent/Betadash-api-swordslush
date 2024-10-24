@@ -515,6 +515,26 @@ app.get('/gemini-1.5-pro-exp-0827', (req, res) => {
     handle('gemini-1.5-pro-exp-0827', query, res);
 });
 
+app.get('/dalle', async (req, res) => {
+  try {
+    const prompt = req.query.prompt;
+
+    const dalleResponse = await axios.get(`https://dall-e-tau-steel.vercel.app/kshitiz?prompt=${encodeURIComponent(prompt)}`);
+
+
+    const imageUrl = dalleResponse.data.response;
+
+    const imageResponse = await axios.get(imageUrl, { responseType: 'arraybuffer' });
+
+
+    res.set('Content-Type', 'image/png');
+
+    res.send(imageResponse.data);
+
+  } catch (error) {
+    res.status(500).send('An error occurred while generating the image');
+  }
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
