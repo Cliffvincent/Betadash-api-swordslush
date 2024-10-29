@@ -569,12 +569,6 @@ app.get('/news', async (req, res) => {
 });
 
 
-
-
-
-const axios = require('axios');
-
-
 const API_KEY = 'your-secret-api-token-here-fluxai';
 
 
