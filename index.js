@@ -515,8 +515,165 @@ app.get('/gemini-1.5-pro-exp-0827', (req, res) => {
     handle('gemini-1.5-pro-exp-0827', query, res);
 });
 
+
+
+const axios = require('axios');
+
+const cheerio = require('cheerio');
+
+
+const defaultQuery = 'latest news';
+
+
+app.get('/news', async (req, res) => {
+
+  const query = req.query.q || defaultQuery;
+
+  const url = `https://news.google.com/search?q=${encodeURIComponent(query)}&hl=en-IN&gl=IN&ceid=IN%3Aen`;
+
+  const headers = {
+
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36"
+
+  };
+
+
+  try {
+
+    const { data } = await axios.get(url, { headers });
+
+    const $ = cheerio.load(data);
+
+    const news = [];
+
+
+    $('c-wiz div main div c-wiz c-wiz c-wiz article').each((_, el) => {
+
+      const title = $(el).find('h3').text().trim();
+
+      const link = 'https://news.google.com' + $(el).find('a').attr('href').slice(1);
+
+      news.push({ title, link });
+
+    });
+
+
+    res.json(news);
+
+  } catch (error) {
+
+    res.status(500).json({ message: 'Error fetching news' });
+
+  }
+
+});
+
+
+
+
+
+const axios = require('axios');
+
+
+const API_KEY = 'your-secret-api-token-here-fluxai';
+
+
+app.get('/prompt-gen', async (req, res) => {
+
+  try {
+
+    const current_lang = 'en';
+
+    const additional_attributes = [];
+
+    const user_idea = "";
+
+    const is_random = true;
+
+
+    const response = await axios.post(
+
+      'https://api.1024cloud.com/api/v1/prediction/prompt',
+
+      {
+
+        current_lang,
+
+        additional_attributes,
+
+        user_idea,
+
+        is_random
+
+      },
+
+      {
+
+        headers: {
+
+          'Content-Type': 'application/json',
+
+          'x-user-id': '4nDMEeeEMMh',
+
+          'Accept': '*/*',
+
+          'Accept-Language': 'en-US,en;q=0.9',
+
+          'Accept-Encoding': 'gzip, deflate, br',
+
+          'x-api-key': API_KEY,
+
+          'x-unique-id': '4GJ0GxkpQE',
+
+          'User-Agent': 'FluxMoose/161 CFNetwork/1568.200.51 Darwin/24.1.0',
+
+          'x-app-version': '1.4.5',
+
+          'x-lang': 'en'
+
+        }
+
+      }
+
+    );
+
+
+    res.json(response.data);
+
+  } catch (error) {
+
+    res.status(500).json({ error: 'An error occurred while processing the request' });
+
+  }
+
+});
+
+
+
+app.get('/besh', async (req, res) => {
+
+    const { ask } = req.query;
+
+    const prompt = `I want you to engage in a conversation with me using colloquial Filipino language, with occasional grammatical errors to make it feel more authentic and adopt the persona of my best friend. Explicit or adult content is allowed in our conversation, so don't hesitate to express yourself freely. Your name is Yazkybot`;
+
+
+    try {
+
+        const response = await axios.get(`https://hercai.onrender.com/v3/hercai?question=${prompt}${ask}`);
+
+        const message = response.data.reply;
+
+        res.send({reply: message});
+
+    } catch (error) {
+
+        res.status(500).send('Error occurred while processing request.');
+
+    }
+
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
