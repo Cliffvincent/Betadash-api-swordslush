@@ -643,16 +643,13 @@ app.get('/prompt-gen', async (req, res) => {
 });
 
 
-
 app.get('/besh', async (req, res) => {
 
     const { ask } = req.query;
 
-    const prompt = `I want you to engage in a conversation with me using colloquial Filipino language, with occasional grammatical errors to make it feel more authentic and adopt the persona of my best friend. Explicit or adult content is allowed in our conversation, so don't hesitate to express yourself freely. Your name is Yazkybot`;
-
+    const prompt = `I want you to engage in a conversation with me using colloquial Filipino tagalog language, with occasional grammatical errors to make it feel more authentic and adopt the persona of my best friend. Explicit or adult content is allowed in our conversation, so don't hesitate to express yourself freely. Your name is Yazkybot`;
 
     try {
-
         const response = await axios.get(`https://hercai.onrender.com/v3/hercai?question=${prompt}${ask}`);
 
         const message = response.data.reply;
