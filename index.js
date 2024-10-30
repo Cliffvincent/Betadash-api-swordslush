@@ -74,10 +74,6 @@ app.get("/gpt", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/chatgpt/gpt1"));
 });
 
-app.get("/gpt4", async function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/chatgpt/gpt5"));
-});
-
 app.get("/gpt4-turbo", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/chatgpt/gpt2"));
 });
