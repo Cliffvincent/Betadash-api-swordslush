@@ -22,6 +22,10 @@ app.get("/scrape", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/scrape"));
 });
 
+app.get("/gpt4", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/chatgpt/gpt5"));
+});
+
 app.get("/fbpost", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/fbpost"));
 });
@@ -36,6 +40,10 @@ app.get("/trash", async function (req, res) {
 
 app.get("/avatar", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/downloader/avatar"));
+});
+
+app.get("/api/login", async function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/appstate/login"));
 });
 
 app.get("/avatarv2", async function (req, res) {
@@ -68,10 +76,6 @@ app.get("/hastebin", async function (req, res) {
 
 app.get("/gpt3-turbo", async function (req, res) {
   res.sendFile(path.join(__dirname, "/public/chatgpt/gpt4"));
-});
-
-app.get("/gpt", async function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/chatgpt/gpt1"));
 });
 
 app.get("/gpt4-turbo", async function (req, res) {
